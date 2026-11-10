@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useWorkspace } from "../../context/WorkspaceContext";
 import MessageBubble from "./MessageBubble";
+import { isRTLText } from "../../utils/rtlHelper";
 import {
   Send,
   Sparkles,
@@ -170,6 +171,7 @@ export default function ChatPanel() {
           <textarea
             ref={inputRef}
             rows={2}
+            dir="auto"
             value={input}
             disabled={isIndexing || isFailed}
             onChange={(e) => setInput(e.target.value)}
@@ -181,7 +183,9 @@ export default function ChatPanel() {
                 ? "Indexing failed for this document."
                 : "Ask a question about this document... (Shift+Enter for new line)"
             }
-            className="w-full bg-transparent px-4 py-3 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none resize-none disabled:opacity-40 disabled:cursor-not-allowed"
+            className={`w-full bg-transparent px-4 py-3 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none resize-none disabled:opacity-40 disabled:cursor-not-allowed ${
+              isRTLText(input) ? "font-urdu text-right" : "text-left"
+            }`}
           />
 
           <div className="flex items-center justify-between px-3 pb-2.5 pt-1">

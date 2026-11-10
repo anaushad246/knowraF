@@ -62,7 +62,10 @@ export default function InlineCitation({ citationNumber, source }) {
           </span>
 
           {source.text && (
-            <span className="block text-[11px] text-slate-300 italic line-clamp-3 leading-relaxed mb-2">
+            <span
+              dir="auto"
+              className="block text-[11px] text-slate-300 italic line-clamp-3 leading-relaxed mb-2"
+            >
               "{source.text.slice(0, 160).trim()}..."
             </span>
           )}

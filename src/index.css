@@ -30,32 +30,24 @@
   border-radius: 2px;
 }
 
-/* Custom modern scrollbar styles */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Urdu & Arabic Typography & RTL Layout */
+.font-urdu {
+  font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', 'Jameel Noori Nastaleeq', 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  line-height: 2.2 !important;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+[dir="rtl"] {
+  text-align: right;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.5);
-  border-radius: 9999px;
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+  padding-right: 1.25rem;
+  padding-left: 0;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.6);
-}
-
-/* React-PDF text layer styling alignment */
-.react-pdf__Page__textContent {
-  color: transparent !important;
-}
-
-.react-pdf__Page__textContent mark {
-  color: transparent !important;
-  background-color: rgba(251, 191, 36, 0.45) !important;
-  border-radius: 2px;
+[dir="rtl"] pre,
+[dir="rtl"] code {
+  direction: ltr !important;
+  text-align: left !important;
 }
