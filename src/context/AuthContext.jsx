@@ -45,11 +45,21 @@ export const AuthProvider = ({ children }) => {
     throw new Error(res?.message || "Login failed");
   };
 
-  const register = async (username, email, password) => {
-    const res = await registerUser({ username, email, password });
+  const register = async (fullNameOrData, username, email, password) => {
+    let payload = {};
+    if (typeof fullNameOrData === "object" && fullNameOrData !== null) {
+      payload = fullNameOrData;
+    } else if (password !== undefined) {
+      payload = { fullName: fullNameOrData, username, email, password };
+    } else {
+      // Fallback if called as register(username, email, password)
+      payload = { fullName: fullNameOrData, username: fullNameOrData, email: username, password: email };
+    }
+
+    const res = await registerUser(payload);
     // Attempt auto-login after registration
     try {
-      return await login(email, password);
+      return await login(payload.email, payload.password);
     } catch {
       return res.data;
     }
